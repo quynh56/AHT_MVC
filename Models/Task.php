@@ -1,5 +1,8 @@
 <?php
-namespace AHT_MVC1\models;
+namespace AHT_MVC1\Models;
+
+use AHT_MVC1\Config\Database;
+use AHT_MVC1\Core\Model;
 class Task extends Model
 {
     public function create($title, $description)

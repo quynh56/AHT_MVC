@@ -1,17 +1,15 @@
 <?php
- namespace AHT_MVC1\tasksController;
- use AHT_MVC1\models as task ;
+ namespace AHT_MVC1\Controllers;
+ use AHT_MVC1\Models\Task;
+ use AHT_MVC1\Core\Controller;
 class tasksController extends Controller
 {
 
     function index()
     {
-        $model_task= new task\Task();
-        require(ROOT . $model_task. '.php');
-
-        $tasks = new Task();
-
-        $d['tasks'] = $tasks->showAllTasks();
+        require(ROOT . 'Models/Task.php');
+        $task =new Task();
+        $d['tasks'] = $task->showAllTasks();
         $this->set($d);
         $this->render("index");
     }
@@ -21,8 +19,7 @@ class tasksController extends Controller
     {
         if (isset($_POST["title"]))
         {
-            $model_task= new task\Task();
-            require(ROOT . $model_task. '.php');
+            require(ROOT . 'Models/Task.php');
             $task= new Task();
 
             if ($task->create($_POST["title"], $_POST["description"]))
@@ -36,8 +33,7 @@ class tasksController extends Controller
 
     function edit($id)
     {
-        $model_task= new task\Task();
-        require(ROOT . $model_task. '.php');
+        require(ROOT . 'Models/Task.php');
         $task= new Task();
 
         $d["task"] = $task->showTask($id);
