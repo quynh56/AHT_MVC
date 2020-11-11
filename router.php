@@ -8,7 +8,7 @@ class Router
         $url = trim($url);
         if ($url == "/AHT_MVC1/")
         {
-            $request->controller = "tasks";
+            $request->controller = "Tasks";
             $request->action = "index";
             $request->params = [];
         }

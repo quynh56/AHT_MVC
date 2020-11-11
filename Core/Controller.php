@@ -14,8 +14,12 @@ namespace AHT_MVC1\Core;
         {
             extract($this->vars);
             ob_start();
-            require(ROOT . "Views/" . ucfirst(str_replace('Controller', '', get_class($this))) . '/' . $filename . '.php');
-//            print_r(ROOT . "Views/" . ucfirst(str_replace('Controller', '', get_class($this))) . '/' . $filename . '.php')
+           $taskcon= ucfirst(str_replace('Controller', '', get_class($this)));
+           $taskcon = explode('\\',$taskcon);
+           $taskcon =array_slice($taskcon,2);
+           $taskcon=implode('',$taskcon);
+           require (ROOT . "Views/" . $taskcon . '/' . $filename . '.php');
+          
             $content_for_layout = ob_get_clean();
 
             if ($this->layout == false)
