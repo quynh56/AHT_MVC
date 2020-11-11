@@ -1,9 +1,9 @@
 <?php
 
 namespace AHT_MVC1\Webroot;
-use AHT_MVC1\router;
+use AHT_MVC1\Router;
 use AHT_MVC1\Config\core;
-use AHT_MVC1\request;
+use AHT_MVC1\Request;
 use AHT_MVC1\Dispatcher;
 
 require __DIR__ . '..\..\vendor\autoload.php';

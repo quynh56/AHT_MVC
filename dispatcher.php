@@ -3,13 +3,9 @@ namespace AHT_MVC1;
 
 use AHT_MVC1\Request;
 use AHT_MVC1\Router;
-use AHT_MVC1\Controllers\TasksController;
-
-use AHT_MVC1\Core\Controller;
 
 class Dispatcher
 {
-
     private $request;
 
     public function dispatch()
@@ -22,13 +18,8 @@ class Dispatcher
 
     public function loadController()
     {
-        $taskcon=" AHT_MVC1\Controllers\TasksController";
-        $taskcon= explode('\\',$taskcon);
-        $taskcon= array_slice($taskcon,2);
-        $taskcon=implode('',$taskcon);
-        $taskcon =substr($taskcon,0,-10);
-        $name= $taskcon."Controller"; 
-        $controller=$taskcon="AHT_MVC1\Controllers\\".$name;
+        $taskcon=$this->request->controller . "Controller";
+        $controller=$taskcon="AHT_MVC1\Controllers\\".$taskcon;
         return new $controller;
     }
 

@@ -9,7 +9,6 @@ class TasksController extends Controller
 
     function index()
     {
-        
         $task =new Task();
         $d['tasks'] = $task->showAllTasks();
         $this->set($d);
