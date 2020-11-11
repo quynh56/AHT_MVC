@@ -1,8 +1,8 @@
 <?php
 namespace AHT_MVC1\Controllers;
 
-use AHT_MVC1\Models\Task;
 use AHT_MVC1\Core\Controller;
+use AHT_MVC1\Models\Task;
 
 class TasksController extends Controller
 {
