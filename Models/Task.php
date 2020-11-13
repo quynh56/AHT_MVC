@@ -5,6 +5,7 @@ use AHT_MVC1\Config\Database;
 use AHT_MVC1\Core\Model;
 class Task extends Model
 {
+
     public function create($title, $description)
     {
         $sql = "INSERT INTO tasks (title, description, created_at, updated_at) VALUES (:title, :description, :created_at, :updated_at)";

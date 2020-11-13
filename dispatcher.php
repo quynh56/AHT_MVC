@@ -19,8 +19,8 @@ class Dispatcher
     public function loadController()
     {
         $taskcon=$this->request->controller . "Controller";
-        $controller=$taskcon="AHT_MVC1\Controllers\\".$taskcon;
-        return new $controller;
+        $controller="AHT_MVC1\Controllers\\".$taskcon;
+        return new $controller();
     }
 
 }

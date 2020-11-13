@@ -2,7 +2,7 @@
 
 namespace AHT_MVC1\Webroot;
 use AHT_MVC1\Router;
-use AHT_MVC1\Config\core;
+use AHT_MVC1\Config\Core;
 use AHT_MVC1\Request;
 use AHT_MVC1\Dispatcher;
 

@@ -2,15 +2,16 @@
 namespace AHT_MVC1\Controllers;
 
 use AHT_MVC1\Core\Controller;
-use AHT_MVC1\Models\Task;
+use AHT_MVC1\Models\TaskModel;
+use AHT_MVC1\Models\TaskRepository;
 
 class TasksController extends Controller
 {
 
     function index()
     {
-        $task =new Task();
-        $d['tasks'] = $task->showAllTasks();
+       $task =new TaskRepository();
+        $d['tasks'] = $task->getAll();
         $this->set($d);
         $this->render("index");
     }
@@ -21,12 +22,16 @@ class TasksController extends Controller
         if (isset($_POST["title"]))
         {
             
-            $task= new Task();
+            $taskM= new TaskModel();
+            $taskM->setTitle($_POST['title']);
+            $taskM->setDescription($_POST['description']);
+            $taskM->setCreate(date("Y-m-d H:i:s"));
 
-            if ($task->create($_POST["title"], $_POST["description"]))
-            {
+            $taskR=new TaskRepository();
+            if ($taskR->add($taskM)){
                 header("Location: " . WEBROOT . "Tasks/index");
             }
+
         }
 
         $this->render("create");
@@ -34,15 +39,20 @@ class TasksController extends Controller
 
     function edit($id)
     {
-        
-        $task= new Task();
-
-        $d["task"] = $task->showTask($id);
-
+        $taskR= new TaskRepository();
+        $d["task"] = $taskR->find($id);
         if (isset($_POST["title"]))
         {
-            if ($task->edit($id, $_POST["title"], $_POST["description"]))
-            {
+            $taskM=new TaskModel();
+            $taskM->setId($id);
+            $taskM->setTitle($_POST['title']);
+            $taskM->setDescription($_POST['description']);
+            $taskM->setUpdate(date("Y-m-d H:i:s"));
+
+            $taskR= new TaskRepository();
+
+            if ($taskR->edit($taskM)){
+
                 header("Location: " . WEBROOT . "Tasks/index");
             }
         }
@@ -53,12 +63,10 @@ class TasksController extends Controller
 
     function delete($id)
     {
-     
-
-        $task = new Task();
-        if ($task->delete($id))
-        {
+        $task = new TaskRepository();
+        if($task->delete($id)){
             header("Location: " . WEBROOT . "Tasks/index");
         }
+
     }
 }
